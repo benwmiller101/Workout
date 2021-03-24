@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Log In</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class = "ion-padding">
+  <form>
+    <ion-item lines="full">
+      <ion-label position="floating">Email</ion-label>
+      <ion-input type="text" [(ngModel)]="email" name="email"></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Password</ion-label>
+      <ion-input type="password" [(ngModel)]="password" name="password"></ion-input>
+    </ion-item>
+    <br>
+    <ion-text color="danger" *ngIf="error" color="danger">{{errorMsg}}</ion-text>
+    <ion-button type="submit" color="danger" expand="block" (click)="login()">Sign In</ion-button>
+
+  </form>
+</ion-content>

@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Workouts</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-button (click) = "workoutReceived()">Check</ion-button>
+  <ion-item>
+    <ion-label>{{item}}</ion-label>
+  </ion-item>
+</ion-content>
+
+<ion-footer class ="ion-padding">
+  <ion-button expand ="block" (click)="createWorkout()">Create Workout</ion-button>
+</ion-footer>

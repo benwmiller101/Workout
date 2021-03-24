@@ -11,6 +11,31 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'create',
+    loadChildren: () => import('./create/create.module').then( m => m.CreatePageModule)
+  },
+  {
+    path: 'registration',
+    loadChildren: () => import('./registration/registration.module').then( m => m.RegistrationPageModule)
+  },
+  {
+    path: 'dashboard',
+    redirectTo: '/tabs/dashboard',
+    pathMatch: 'full'
+  },
+  {
+    path: 'workouts',
+    loadChildren: () => import('./workouts/workouts.module').then( m => m.WorkoutsPageModule)
+  },
+  {
+    path: 'tabs',
+    loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule)
+  },
 ];
 
 @NgModule({

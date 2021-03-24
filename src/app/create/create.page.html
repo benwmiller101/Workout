@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="close()">
+        <ion-icon slot= "icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Create</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class ="ion-padding">
+  <ion-list lines="none">
+    <ion-item>
+      <ion-input class ="name"  [(ngModel)]="workoutNameValue" placeholder="Name of workout?"></ion-input>
+    </ion-item>
+  </ion-list>
+  <ion-button expand="block" (click)="add()">Add Exercise</ion-button>
+  <ion-list *ngFor="let exercise of exercises">
+    <ion-card>
+      <ion-card-content>
+        <ion-item lines="none">
+          <ion-label><h2>{{exercise}}</h2></ion-label>
+          <ion-button (click)="removeExercise()" slot = "end"><ion-icon name="close-outline"></ion-icon></ion-button>
+        </ion-item>
+        <ion-item>
+          <ion-label class = "numberOf"><h3>How many sets?</h3></ion-label>
+          <ion-input type="number" [(ngModel)]="exercises.sets"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label class = "numberOf"><h3>How many reps?</h3></ion-label>
+          <ion-input type="number" [(ngModel)]="exercises.reps"></ion-input>      
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+  
+</ion-content>
+
+<ion-footer class ="ion-padding">
+  <ion-button expand="block" (click)="create(workoutNameValue)">Create Workout</ion-button>
+</ion-footer>
