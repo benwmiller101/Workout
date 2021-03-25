@@ -14,10 +14,11 @@ export class CreatePage implements OnInit {
   exerciseList: any = "";
   exercises: any[] = [];
   exerciseDetails: Array<{name: string, sets: number, reps: number}> = [];
-  workout: any[] = [];
+  numOfExercises;
   sets;
   reps;
   workoutNameValue;
+ 
   constructor(
     private router: Router ,
     private http: HttpClient, 
@@ -40,20 +41,20 @@ export class CreatePage implements OnInit {
     .then((data) => {
       this.exerciseList = data.data;
       this.exercises.push(this.exerciseList);
+      
       this.exerciseDetails.push({name:this.exerciseList,sets:this.sets,reps:this.reps})
+      this.numOfExercises = this.exercises.length;
   });
+  
     await modal.present();
   }
 
   create(){
-    //console.log(this.workoutNameValue); 
-    this.workout.push(this.exerciseDetails);
-    //console.log(this.workout);
-
     this.navParamService.setNavData(this.workoutNameValue);
-
+    this.navParamService.setNumOfExercises(this.numOfExercises);
     this.router.navigate(['./workouts'],{queryParams:this.exerciseDetails});
-    //this.router.navigate(['./workouts'],{queryParams:this.workoutNameValue});
+    console.log("Number of exercises: " + this.numOfExercises);
+    this.numOfExercises = 0;
     this.exerciseDetails = [];
     this.exercises = [];
     this.modalCtrl.dismiss();
@@ -65,7 +66,6 @@ export class CreatePage implements OnInit {
   removeExercise(){
     this.exercises.splice(this.exerciseList, 1);
     this.exerciseDetails.splice(1,1);
-   // console.log(this.exerciseDetails);
   }
 
 }

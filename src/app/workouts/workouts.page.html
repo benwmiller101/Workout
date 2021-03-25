@@ -1,14 +1,19 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Workouts</ion-title>
+    <ion-title>W O R K O U T S</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-button (click) = "workoutReceived()">Check</ion-button>
-  <ion-item>
-    <ion-label>{{item}}</ion-label>
-  </ion-item>
+  <ion-card *ngFor="let workoutName of workouts">
+    <ion-card-header>
+      <ion-card-title>
+        {{workoutName}}      
+        <ion-button (click)="removeWorkout(index)" style="float: right;"><ion-icon name="close-outline"></ion-icon></ion-button>
+      </ion-card-title>
+      <ion-card-subtitle>Exercises: {{numOfExercises}}</ion-card-subtitle>
+    </ion-card-header>
+  </ion-card>
 </ion-content>
 
 <ion-footer class ="ion-padding">

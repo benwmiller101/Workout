@@ -14,7 +14,9 @@ export class WorkoutsPage implements OnInit {
 
   dataRecieved:any;
   workoutName: string;
-  
+  workouts: any[] = [];
+  numOfExercises:any;
+
 
   constructor(
     private navParamService:NavparamService,
@@ -26,8 +28,9 @@ export class WorkoutsPage implements OnInit {
       this.dataRecieved = data;
     })
 
-    this.workoutName = this.navParamService.getNavData();
-
+    this.workouts = this.navParamService.getNavData();
+    this.numOfExercises = this.navParamService.getNumOfExercises();
+  
   }
 
   ngOnInit() {
@@ -39,10 +42,14 @@ export class WorkoutsPage implements OnInit {
     })
     await modal.present();
     //this.router.navigate(['./create'])
+    
   }
 
-  workoutReceived(){
-    //console.log(this.dataRecieved);
-    console.log("workout name: " + this.workoutName);
+
+  removeWorkout(index){
+    let i = this.workouts.indexOf(index);
+    this.numOfExercises = 0;
+    this.workouts.splice(i , 1);
   }
+
 }

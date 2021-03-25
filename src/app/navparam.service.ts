@@ -6,6 +6,10 @@ import { Injectable } from '@angular/core';
 })
 export class NavparamService {
   navData:any;
+  workouts: Array<{name: string}> = [];
+
+  numOfExercises:any;
+
   constructor() {
 
 
@@ -13,12 +17,21 @@ export class NavparamService {
 
    setNavData(navObj){
     this.navData = navObj;
-    console.log(this.navData);
+    this.workouts.push(this.navData);
+    
    }
 
    getNavData(){
-     if (this.navData === null || this.navData === undefined)
-     return 0
-     return this.navData;
+     return this.workouts;
+   }
+
+
+   setNumOfExercises(num){
+    this.numOfExercises = num;
+
+   }
+
+   getNumOfExercises(){
+    return this.numOfExercises;
    }
 }

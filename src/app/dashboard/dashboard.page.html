@@ -6,15 +6,20 @@
 <ion-content>
   <ion-card>
     <ion-card-header>
+      <ion-img src="assets\Images\fitness.jpg"></ion-img>
       <ion-card-subtitle>Profile</ion-card-subtitle>
       <ion-card-title>Hello {{user.firstname}}!</ion-card-title>
     </ion-card-header>
+    <ion-card-content>
+      Welcome to "Workouts"! The app that allows you to create and keep track of your workouts.<br>
+      When your ready, head over to the workouts tab to begin.
+    </ion-card-content>
   </ion-card>
 </ion-content>
 <ion-footer class="leave">
   <ion-card>
     <ion-card-content>
-      <ion-button color="warning" expand="block" (click)="logout()"> Logout </ion-button><br>
+      <ion-button color="primary" expand="block" (click)="logout()"> Logout </ion-button><br>
       <ion-button color="danger" expand="block" (click)="delete()"> Delete Account</ion-button>
     </ion-card-content>
   </ion-card>
