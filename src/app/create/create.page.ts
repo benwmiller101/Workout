@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ModalController, NavController, NavParams } from '@ionic/angular';
+import { AlertController, ModalController, NavController, NavParams } from '@ionic/angular';
 import { ExerciseModalComponent } from '../exercise-modal/exercise-modal.component';
 import { NavparamService } from '../navparam.service';
 
@@ -21,19 +21,16 @@ export class CreatePage implements OnInit {
  
   constructor(
     private router: Router ,
-    private http: HttpClient, 
     private modalCtrl:ModalController,
-    private navParamService: NavparamService
+    private navParamService: NavparamService,
+    private alertController: AlertController
     ) { }
 
-  ngOnInit() {
-    this.http.get('https://wger.de/api/v2/exercise/').subscribe((response) => {console.log(response);this.exerciseList = response['results']});
+  ngOnInit() { }
 
-  }
   async add(){
     const modal = await this.modalCtrl.create({
       component : ExerciseModalComponent
-      
     });
      
     modal.onDidDismiss()
@@ -41,23 +38,36 @@ export class CreatePage implements OnInit {
     .then((data) => {
       this.exerciseList = data.data;
       this.exercises.push(this.exerciseList);
-      
       this.exerciseDetails.push({name:this.exerciseList,sets:this.sets,reps:this.reps})
       this.numOfExercises = this.exercises.length;
   });
-  
     await modal.present();
   }
 
   create(){
-    this.navParamService.setNavData(this.workoutNameValue);
-    this.navParamService.setNumOfExercises(this.numOfExercises);
-    this.router.navigate(['./workouts'],{queryParams:this.exerciseDetails});
-    console.log("Number of exercises: " + this.numOfExercises);
-    this.numOfExercises = 0;
-    this.exerciseDetails = [];
-    this.exercises = [];
-    this.modalCtrl.dismiss();
+    if(this.workoutNameValue != null){
+      this.navParamService.setNavData(this.workoutNameValue);
+      this.navParamService.setNumOfExercises(this.numOfExercises);
+      this.router.navigate(['./workouts'],{queryParams:this.exerciseDetails});
+      console.log("Number of exercises: " + this.numOfExercises);
+      this.numOfExercises = 0;
+      this.exerciseDetails = [];
+      this.exercises = [];
+      this.modalCtrl.dismiss();
+    } else {
+      this.presentAlert();
+    }
+
+  }
+  async presentAlert(){
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Cannot Create Workout',
+      message: 'You need to name your workout first.',
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
   async close(){
     await this.modalCtrl.dismiss();

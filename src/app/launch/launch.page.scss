@@ -1,0 +1,25 @@
+ion-slides {
+    height: 100%;
+  }
+  
+ion-slide{
+    display: inline;
+    margin-top: 50%;
+    margin-bottom: 50%;
+}
+
+p {
+    padding: 0 40px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--ion-color-step-600, #60646b);
+  }
+
+.logo{
+    height: 100px;
+    margin:100px
+}
+
+.ready{
+    margin-top: 50%;
+}

@@ -1,0 +1,16 @@
+<ion-content>
+  <ion-slides pager="true" [options]="slideOpts">
+    <ion-slide>
+      <ion-img  class ="logo" src = "assets/Images/logo.png"></ion-img>
+    </ion-slide>
+    <ion-slide>
+      <ion-img  src = "assets/Images/gym.jpg"></ion-img>
+      <h1>Welcome</h1>
+      <p>The <strong>Fire Fitness</strong> app will help you keep track of your workouts and keep you fit.</p>
+    </ion-slide>
+    <ion-slide >
+        <h2 class = "ready">Ready to Begin?</h2>
+        <ion-button [routerLink]="['/home']" fill="clear">Continue <ion-icon slot="end" name="arrow-forward"></ion-icon></ion-button>
+    </ion-slide>
+  </ion-slides>
+</ion-content>

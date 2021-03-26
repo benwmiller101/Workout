@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>Log In</ion-title>
+    <ion-title><img src="assets/Images/title.png" height="20px" ></ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -21,6 +21,5 @@
     <br>
     <ion-text color="secondary" *ngIf="error" color="danger">{{errorMsg}}</ion-text>
     <ion-button type="submit" color="primary" expand="block" (click)="login()">Sign In</ion-button>
-
   </form>
 </ion-content>
