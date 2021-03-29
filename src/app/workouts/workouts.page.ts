@@ -21,11 +21,11 @@ export class WorkoutsPage implements OnInit {
     public activatedRoute: ActivatedRoute
   ) {
     this.activatedRoute.queryParams.subscribe((data) => {
-      this.dataRecieved = data;
+      this.dataRecieved = data; //get data from navparams service 
     });
 
     this.workouts = this.navParamService.getNavData();
-    this.numOfExercises = this.navParamService.getNumOfExercises();
+    this.numOfExercises = this.navParamService.getNumOfExercises(); //get data from navparams service 
   }
 
   ngOnInit() {}
@@ -34,10 +34,10 @@ export class WorkoutsPage implements OnInit {
     const modal = await this.modalCtrl.create({
       component: CreatePage,
     });
-    await modal.present();
+    await modal.present();//present create page modal
   }
 
-  removeWorkout(index) {
+  removeWorkout(index) {//remove workout from list
     let i = this.workouts.indexOf(index);
     this.numOfExercises = 0;
     this.workouts.splice(i, 1);

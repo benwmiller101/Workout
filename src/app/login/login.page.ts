@@ -24,23 +24,23 @@ export class LoginPage implements OnInit {
     this.storage.get('user').then((user) => {console.log(user);
     
       if (user) {
-        if(user.email == this.email && user.password == this.password){
+        if(user.email == this.email && user.password == this.password){ // checks if the user details are correct
 
           this.email = ""
           this.password =""
           this.error = false;
-          this.router.navigate(['/dashboard'])
+          this.router.navigate(['/dashboard']) // if they are corrent navigate to profile page
 
         }
         else {
           this.email = ""
           this.password =""
           this.error = true;
-          this.errorMsg = "Invalid email or password"
+          this.errorMsg = "Invalid email or password" // if they dont match display error message
         }
       } else {
         this.error = true;
-        this.errorMsg = "No account found. Register first"
+        this.errorMsg = "No account found. Register first" // if no account, tell them to create account
       }
     
     })

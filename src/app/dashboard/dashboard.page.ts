@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { Router } from '@angular/router';
 import { AlertController, PopoverController } from '@ionic/angular';
-import { ProfilePopoverComponent } from '../profile-popover/profile-popover.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,32 +18,20 @@ export class DashboardPage implements OnInit {
   private router: Router
   ) { }
 
-  async popover(){
-    const popover = await this.popoverController.create({
-      component: ProfilePopoverComponent,
-      event
-    });
-    return await popover.present();
-  }
-
-
-  ngOnInit() {
+  ngOnInit() { //get user from storage
     this.storage.get('user').then(
       (obj) => {  console.log(obj);
         this.user= obj;}
     )
   }
-
-
-  
   
 
   logout(){
-    this.router.navigate(['/'])
+    this.router.navigate(['/home']) //redirect to login page
   }
   
-  async delete() {
-    const alert = await this.alertController.create({
+  async delete() {  //Delete user
+    const alert = await this.alertController.create({// Alert appears to confirm the deletion of the profile.
       cssClass: 'my-custom-class',
       header: 'Delete Account?',
       message: 'Are you sure you want to delete your account? It will be lost <strong>forever</strong>.',

@@ -15,23 +15,23 @@ export class NavparamService {
 
    }
 
-   setNavData(navObj){
+   setNavData(navObj){ //recive workout name from create page
     this.navData = navObj;
     this.workouts.push(this.navData);
     
    }
 
-   getNavData(){
+   getNavData(){ //return workoutname to be grabbed by workouts page.
      return this.workouts;
    }
 
 
-   setNumOfExercises(num){
+   setNumOfExercises(num){  //recive number of exercises from create page
     this.numOfExercises = num;
 
    }
 
-   getNumOfExercises(){
+   getNumOfExercises(){ //return number of exercises to be grabbed by workouts page.
     return this.numOfExercises;
    }
 }

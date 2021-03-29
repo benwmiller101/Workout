@@ -28,6 +28,7 @@ export class CreatePage implements OnInit {
 
   ngOnInit() { }
 
+  //Create modal
   async add(){
     const modal = await this.modalCtrl.create({
       component : ExerciseModalComponent
@@ -35,6 +36,7 @@ export class CreatePage implements OnInit {
      
     modal.onDidDismiss()
 
+    //Recieve data from modal and process it
     .then((data) => {
       this.exerciseList = data.data;
       this.exercises.push(this.exerciseList);
@@ -44,13 +46,15 @@ export class CreatePage implements OnInit {
     await modal.present();
   }
 
+
+  //Create workout
   create(){
-    if(this.workoutNameValue != null){
-      this.navParamService.setNavData(this.workoutNameValue);
-      this.navParamService.setNumOfExercises(this.numOfExercises);
-      this.router.navigate(['./workouts'],{queryParams:this.exerciseDetails});
+    if(this.workoutNameValue != null){  //Check if a name has been entered, if not then display alert
+      this.navParamService.setNavData(this.workoutNameValue); //send data to navparam service
+      this.navParamService.setNumOfExercises(this.numOfExercises); //send data to navparam service
+      this.router.navigate(['./workouts'],{queryParams:this.exerciseDetails}); //navigate back to workouts page
       console.log("Number of exercises: " + this.numOfExercises);
-      this.numOfExercises = 0;
+      this.numOfExercises = 0;  //set data to empty so that next workout created doesnt include previous data
       this.exerciseDetails = [];
       this.exercises = [];
       this.modalCtrl.dismiss();
@@ -59,7 +63,7 @@ export class CreatePage implements OnInit {
     }
 
   }
-  async presentAlert(){
+  async presentAlert(){ //preset alart that alerts user that they need to name their workout.
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
       header: 'Cannot Create Workout',
@@ -73,7 +77,7 @@ export class CreatePage implements OnInit {
     await this.modalCtrl.dismiss();
   }
 
-  removeExercise(){
+  removeExercise(){ //remove exercise from list
     this.exercises.splice(this.exerciseList, 1);
     this.exerciseDetails.splice(1,1);
   }

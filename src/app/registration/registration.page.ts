@@ -20,8 +20,8 @@ export class RegistrationPage implements OnInit {
   register(){
     console.log(this.user);
 
-    this.storage.set('user', this.user).then(
-      (obj) => {this.router.navigate(['/dashboard'])}
+    this.storage.set('user', this.user).then( //store data given
+      (obj) => {this.router.navigate(['/dashboard'])} //navigate to profile page
 
     );
 

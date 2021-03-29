@@ -18,8 +18,7 @@ export class ExerciseModalComponent implements OnInit {
   constructor(private http: HttpClient, private modalCtrl: ModalController) { }
 
   ngOnInit() {
-    this.exerciseName = 123;
-    this.http.get('https://wger.de/api/v2/exercise/').subscribe((response) => {console.log(response);this.exerciseList = response['results']});
+    this.http.get('https://wger.de/api/v2/exercise/').subscribe((response) => {console.log(response);this.exerciseList = response['results']}); //get response from API
   }
 
   dismissModal(name){
@@ -27,7 +26,7 @@ export class ExerciseModalComponent implements OnInit {
   }
 
   addExercise(exercise: any){
-    this.dismissModal(exercise.name);
+    this.dismissModal(exercise.name);//dismisses the modal while passing through name of exercise clicked.
   }
 }
 
